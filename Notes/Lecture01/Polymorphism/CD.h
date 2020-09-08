@@ -17,6 +17,7 @@ namespace cw1
         	//by using the using statement
         	//Deposit() will be private for CD objects
         	using Account::Deposit; 
+		using Account::Withdraw;
 
 		public:
         	//Initializes with base overloaded constructor 
@@ -44,9 +45,6 @@ namespace cw1
 		}
 
 		~CD() {} 
-
-        	//Making method inaccessible using the delete keyword
-        	bool Withdraw(double amt) = delete;
 
         	//Overridding ToString() method
 		std::string ToString() const 

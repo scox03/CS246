@@ -69,10 +69,13 @@ namespace cw1
 		{
 			return (balance / 100.00);
 		}
-
-		//Deposits amount in account as 
-		//long as the amount is positive
-		bool Deposit(double amt) 
+ 
+		//This is now a virtual method
+		//which means the overridden 
+		//versions of this method will be
+		//call for derived class pointers
+		//and references
+		virtual bool Deposit(double amt) 
 		{
 			if(amt > 0)
 			{
@@ -82,9 +85,8 @@ namespace cw1
 			return false;
 		}
 
-		//Withdraw amount from account as 
-		//long as the amount is positive
-		bool Withdraw(double amt)
+		
+		virtual bool Withdraw(double amt)
 		{
 			if(amt > 0)
 			{
