@@ -146,7 +146,7 @@ namespace ds
 	template<typename T>
 	int ReversrSearch(array<T>& obj,int idx,const T& item)
 	{
-		for(int i = obj.size;i >= 0 && i >= idx;i -= 1)
+		for(int i = obj.size-1;i >= 0 && i >= idx;i -= 1)
 		{
 			if(obj.data[i] == item)
 			{
@@ -160,7 +160,7 @@ namespace ds
 	template<typename T>
 	int ReverseSearch(array<T>& obj,const T& item)
 	{
-		for(int i = obj.size;i >= 0;i -= 1)
+		for(int i = obj.size-1;i >= 0;i -= 1)
 		{
 			if(obj.data[i] == item)
 			{
