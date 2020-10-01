@@ -211,7 +211,6 @@ namespace ds
 		{
 			tmp[i] = obj.data[i];
 		}
-		
 		obj.data.Reset(sz * 2);
 		
 		for(int i = 0;i < sz;i += 1)
