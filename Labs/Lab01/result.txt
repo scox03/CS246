@@ -1,0 +1,15 @@
+Section		Grade
+=========================== 
+Part A		1.80/5.00
+Part B		2.40/5.00
+===========================
+Total		4.20/5.00 
+
+Comment:
++ Part A, the function HasDuplicate() will
+not produce accurate results.
+
++ Part B, there is an error.
+
++ Part B, the set methods are not performing
+the requested tasks.
