@@ -1,11 +1,11 @@
 Section		Grade
 ======================== 
 Problem 1	4.8/5
-Problem 2	2.0/5
-Problem 3	1.4/5
+Problem 2	4.5/5
+Problem 3	1.5/5
 Problem 4	2.5/5
 ========================
-Total		10.7/20 
+Total		13.3/20 
 
 Comment:
 + Problem 1, the function will receive an out 
@@ -13,12 +13,6 @@ of bound error.
 
 + Problem 1, the solution may not always be
 accurate.
-
-+ Problem 2, the function will receive an out 
-of bound error.
-
-+ Problem 2, the function does not perform the
-requested task.
 
 + Problem 2, the function will not produce an
 accurate solution.
