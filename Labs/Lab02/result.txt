@@ -1,0 +1,11 @@
+Section		Grade
+=========================== 
+Part A		0.00/2.00
+Part B		0.00/3.00
+===========================
+Total		0.00/5.00 
+
+Comment:
++ Part A, work is plagiarized.
+
++ Part B, work is plagiarized.
