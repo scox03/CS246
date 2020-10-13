@@ -16,23 +16,16 @@ namespace ds
 		{
 			private:
 			Node<T>* head;
-			Node<T>* tail;
 			ulong size;
 
 			public:
-			List() : size(0), head(NULL), tail(NULL) {}
+			List() : size(0), head(NULL) {}
 		
 
 			List(const List<T>& obj)
 			{
 				size = obj.size;
 				head = Copy(obj.head);
-				tail = head;
-
-				while(tail->link != NULL)
-				{
-					tail = tail->link;
-				}
 			}
 
 			List<T>& operator=(const List<T>& rhs)
@@ -42,12 +35,6 @@ namespace ds
 					size = rhs.size;
 					Clear(head);
 					head = Copy(rhs.head);
-					tail = head;
-
-					while(tail->link != NULL)
-					{
-						tail = tail->link;
-					}
 				}
 				return *this;
 			}
@@ -56,7 +43,6 @@ namespace ds
 			{
 				Clear(head);
 				head = NULL;
-				tail = NULL;
 			}
 
 			ulong Length() const
@@ -70,32 +56,23 @@ namespace ds
 			}
 
 			//prev must be a node of the list or NULL
-			void Insert(Node<T>* prev,const T& item)
+			void Insert(Node<T>* node,const T& item)
 			{
 				if(head == NULL)
 				{
 					head = Create(item);
-					tail = head;
 				}
-				else 
+				else if(node == NULL)
 				{
 					Node<T>* t = Create(item);
-
-					if(prev == NULL)
-					{
-						t->link = head;
-						head = t;
-					}
-					else
-					{
-						t->link = prev->link;
-						prev->link = t;
-					
-						if(prev == tail)
-						{
-							tail = t;
-						}
-					}
+					t->link = head;
+					head = t;
+				}
+				else
+				{
+					Node<T>* t = Create(item);
+					t->link = node->link;
+					node->link = t;
 				}
 				size += 1;	
 			}
@@ -106,12 +83,16 @@ namespace ds
 				if(head == NULL)
 				{
 					head = Create(item);
-					tail = head;
 				}
 				else
 				{
-					tail->link = Create(item);
-					tail = tail->link;
+					Node<T>* t = head;
+
+					while(t->link != NULL)
+					{
+						t = t->link;
+					}
+					t->link = Create(item);
 				}
 				size += 1;
 			}		
@@ -129,11 +110,6 @@ namespace ds
 						head = head->link;
 						delete t;
 						t = NULL;
-
-						if(head == NULL)
-						{
-							tail = NULL;
-						}
 					}
 					else
 					{
@@ -146,11 +122,6 @@ namespace ds
 						t->link = ct->link;
 						delete ct;
 						ct = NULL;
-
-						if(t->link == NULL)
-						{
-							tail = t;
-						}
 					}
 					size -= 1;
 				}	
@@ -161,23 +132,24 @@ namespace ds
 			{
 				if(head != NULL)
 				{
-					if(head == tail)
+					if(head->link == NULL)
 					{
 						delete head;
 						head = NULL;
-						tail = NULL;
 					}
 					else
 					{
-						Node<T>* t = head;
-						
-						while(t->link != tail)
+						Node<T>* t = head->link;
+						Node<T>* tp = head;
+
+						while(t->link != NULL)
 						{
+							tp = t;
 							t = t->link;
-						}
-						t->link = NULL;	
-						delete tail;
-						tail = t;
+						}	
+						tp->link = NULL;
+						delete t;
+						t = NULL;
 					}	
 					size -= 1;
 				}
@@ -312,23 +284,16 @@ namespace ds
 		{
 			private:
 			Node<T>* head;
-			Node<T>* tail;
 			ulong size;
 
 			public:
-			List() : size(0), head(NULL), tail(NULL) {}
+			List() : size(0), head(NULL) {}
 		
 
 			List(const List<T>& obj)
 			{
 				size = obj.size;
 				head = Copy(obj.head);
-				tail = head;
-
-				while(tail->link != NULL)
-				{
-					tail = tail->next;
-				}
 			}
 
 			List<T>& operator=(const List<T>& rhs)
@@ -338,12 +303,6 @@ namespace ds
 					size = rhs.size;
 					Clear(head);
 					head = Copy(rhs.head);
-					tail = head;
-
-					while(tail->link != NULL)
-					{
-						tail = tail->next;
-					}
 				}
 				return *this;
 			}
@@ -352,7 +311,6 @@ namespace ds
 			{
 				Clear(head);
 				head = NULL;
-				tail = NULL;
 			}
 
 			ulong Length() const
@@ -366,33 +324,29 @@ namespace ds
 			}
 
 			//prev must be a node of the list or NULL
-			void Insert(Node<T>* prev,const T& item)
+			void Insert(Node<T>* node,const T& item)
 			{
 				if(head == NULL)
 				{
 					head = Create(item);
-					tail = head;
+				}
+				else if(node == NULL)
+				{
+					Node<T>* t = Create(item);
+					t->next = head;
+					head->prev = t;
+					head = t;
 				}
 				else 
 				{
 					Node<T>* t = Create(item);
-
-					if(prev == NULL)
-					{
-						t->next = head;
-						head->prev = t;
-						head = t;
-					}
-					else
-					{
-						t->next = prev->next;
-						t->prev = prev;
-						prev->next = t;
+					t->next = node->next;
+					node->next = t;
+					t->prev = node;
 					
-						if(prev == tail)
-						{
-							tail = t;
-						}
+					if(t->next != NULL)
+					{
+						t->next->prev = t;
 					}
 				}
 				size += 1;	
@@ -404,13 +358,17 @@ namespace ds
 				if(head == NULL)
 				{
 					head = Create(item);
-					tail = head;
 				}
 				else
 				{
-					tail->next = Create(item);
-					tail->next->prev = tail;
-					tail = tail->next;
+					Node<T>* t = head;
+
+					while(t->next != NULL)
+					{
+						t = t->next;
+					}
+					t->next = Create(item);
+					t->next->prev = t;
 				}
 				size += 1;
 			}		
@@ -420,36 +378,25 @@ namespace ds
 			{
 				if(head != NULL && ct != NULL)
 				{
-					Node<T>* t;
-
 					if(ct == head)
 					{
-						t = head;
 						head = head->next;
-						delete t;
-						t = NULL;
+						delete ct;
+						ct = NULL;
 
-						if(head == NULL)
-						{
-							tail = NULL;
-						}
-						else 
+						if(head != NULL) 
 						{
 							head->prev = NULL;
 						}
 					}
-					else if(ct == tail)
-					{
-						t = ct->prev;
-						t->next = NULL;
-						delete ct;
-						ct = NULL;
-						tail = t;
-					}
 					else
 					{
 						ct->prev->next = ct->next;
-						ct->next->prev = ct->prev;
+
+						if(ct->next != NULL)
+						{
+							ct->next->prev = ct->prev;
+						}
 						delete ct;
 						ct = NULL;
 					}
@@ -462,19 +409,22 @@ namespace ds
 			{
 				if(head != NULL)
 				{
-					if(head == tail)
+					if(head->next == NULL)
 					{
 						delete head;
 						head = NULL;
-						tail = NULL;
 					}
 					else
 					{
-						Node<T>* t = tail;
-						tail = tail->prev;
+						Node<T>* t = head;
+				
+						while(t->next != NULL)
+						{
+							t = t->next;
+						}
+						t->prev->next = NULL;
 						delete t;
 						t = NULL;
-						tail->next = NULL;
 					}	
 					size -= 1;
 				}
