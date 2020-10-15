@@ -1,8 +1,16 @@
 Section		Grade
-======================== 
-Part A		0/2
-Part B		PND
-========================
-Total		0/5 
+========================== 
+Part A		0.00/2.00
+Part B		2.10/3.00
+==========================
+Total		2.10/5.00 
 
 Comment:
++ Part A is missing.
+
++ Part B, there are some errors.
+
++ Part B, some methods are definied 
+incorrectly.
+
++ Part B, a method is missing.
