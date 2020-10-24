@@ -1,9 +1,13 @@
 Section		Grade
 =========================== 
 Part A		0.00/2.00
-Part B		0.00/3.00
+Part B		2.70/3.00
 ===========================
-Total		0.00/5.00 
+Total		2.70/5.00 
 
 Comment:
-Part A is missing.
++ Part A is missing.
+
++ Part B, the function is not completely
+accurate.
+
