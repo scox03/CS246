@@ -3,7 +3,7 @@ Section		Grade
 Part A		1.10/2.00
 Part B		0.00/3.00
 ===========================
-Total		0.00/5.00 
+Total		1.10/5.00 
 
 Comment:
 + Part A, the function has errors.
@@ -12,3 +12,5 @@ Comment:
 
 + Part A, the function is not performing
 the requested task accurately.
+
++ Part B is missing.

@@ -1,0 +1,11 @@
+Section		Grade
+============================ 
+Part A		1.40/2.00
+Part B		0.00/3.00
+============================
+Total		1.40/5.00
+
+Comment:
++ Part A, the function has an error.
+
++ Part A, the function is inaccurate.
