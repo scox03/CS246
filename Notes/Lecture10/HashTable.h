@@ -127,19 +127,10 @@ namespace ds
 				}
 				else 
 				{
-					Node<T>* t = heads[idx];
-					
-					//determine if data is a member of the list 
-					//or get to the end of the list
-					while(t->link != NULL && t->data != data)
-					{
-						t = t->link;
-					}
-
-					if(t->link == NULL)
-					{
-						t->link = Create(data);
-					}
+					//make the new node the new head
+					Node<T>* t = Create(data);
+					t->link = heads[idx];
+					heads[idx] = t;
 				}
 			}
 
@@ -174,6 +165,12 @@ namespace ds
 						}
 					}
 				}
+			}
+
+			Node<T>* GetSlot(const T& data)
+			{
+				ulong idx = hash(data);
+				return heads[idx];
 			}
 
 			std::string ToString() const 
@@ -311,20 +308,11 @@ namespace ds
 				}
 				else 
 				{
-					Node<T>* t = heads[idx];
-					
-					//determine if data is a member of the list 
-					//or get to the end of the list
-					while(t->next != NULL && t->data != data)
-					{
-						t = t->next;
-					}
-
-					if(t->next == NULL)
-					{
-						t->next = Create(data);
-						t->next->prev = t;
-					}
+					//make to new node the new head
+					Node<T>* t = Create(data);
+					t->next = heads[idx];
+					heads[idx]->prev = t;
+					heads[idx] = t;
 				}
 			}
 
@@ -370,6 +358,12 @@ namespace ds
 				}
 			}
 
+			Node<T>* GetSlot(const T& data)
+			{
+				ulong idx = hash(data);
+				return heads[idx];
+			}
+
 			std::string ToString() const 
 			{
 				std::stringstream out;
@@ -392,7 +386,7 @@ namespace ds
 						t = t->next;
 					}
 
-					if((content < 0) && (i + 1 != capacity) && (heads[i+1] != NULL))
+					if((content > 0) && (i + 1 != capacity) && (heads[i+1] != NULL))
 					{
 						out << ",";
 					}
