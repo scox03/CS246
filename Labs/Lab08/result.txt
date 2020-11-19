@@ -1,8 +1,9 @@
 Section		Grade
 ============================ 
-Part A		0.00/2.00
+Part A		0.80/2.00
 Part B		0.00/3.00
 ============================
-Total		0.00/5.00
+Total		0.80/5.00
 
 Comment:
++ Part B is missing.
