@@ -9,3 +9,5 @@ Comment:
 + Part A, the function has an error.
 
 + Part A, the function is inaccurate.
+
++ Part B is missing..
