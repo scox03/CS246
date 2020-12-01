@@ -17,7 +17,7 @@ namespace ds
 			if(rt[idx] != NULL)
 			{
 				Infix(rt,LEFT(idx));
-				std::cout << *(rt[idx]) << "\n";
+				std::cout << *(rt[idx]) << " ";
 				Infix(rt,RIGHT(idx));
 			}
 		}
@@ -35,7 +35,7 @@ namespace ds
 		if(rt != NULL)
 		{
 			Infix(rt->left);
-			std::cout << rt->data << "\n";
+			std::cout << rt->data << " ";
 			Infix(rt->right);
 		}
 	}
@@ -46,7 +46,7 @@ namespace ds
 		if(rt != NULL)
 		{
 			Infix(rt->left);
-			std::cout << rt->data << "\n";
+			std::cout << rt->data << " ";
 			Infix(rt->right);
 		}
 	}
@@ -58,7 +58,7 @@ namespace ds
 		{
 			if(rt[idx] != NULL)
 			{
-				std::cout << *(rt[idx]) << "\n";
+				std::cout << *(rt[idx]) << " ";
 				Prefix(rt,LEFT(idx));
 				Prefix(rt,RIGHT(idx));
 			}
@@ -76,7 +76,7 @@ namespace ds
 	{
 		if(rt != NULL)
 		{
-			std::cout << rt->data << "\n";
+			std::cout << rt->data << " ";
 			Prefix(rt->left);
 			Prefix(rt->right);
 		}
@@ -87,7 +87,7 @@ namespace ds
 	{
 		if(rt != NULL)
 		{
-			std::cout << rt->data << "\n";
+			std::cout << rt->data << " ";
 			Prefix(rt->left);
 			Prefix(rt->right);
 		}
@@ -103,7 +103,7 @@ namespace ds
 			{
 				Postfix(rt,LEFT(idx));
 				Postfix(rt,RIGHT(idx));
-				std::cout << *(rt[idx]) << "\n";
+				std::cout << *(rt[idx]) << " ";
 			}
 		}
 	}
@@ -121,7 +121,7 @@ namespace ds
 		{
 			Postfix(rt->left);
 			Postfix(rt->right);
-			std::cout << rt->data << "\n";
+			std::cout << rt->data << " ";
 		}
 	}
 
@@ -132,7 +132,7 @@ namespace ds
 		{
 			Postfix(rt->left);
 			Postfix(rt->right);
-			std::cout << rt->data << "\n";
+			std::cout << rt->data << " ";
 		}
 	}
 }

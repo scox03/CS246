@@ -140,7 +140,7 @@ namespace ds
 		};
 
 		template<typename T>
-		BTNode<T>* Create(const T& itm)
+		BTNode<T>* TCreate(const T& itm)
 		{
 			BTNode<T> *t = new BTNode<T>;
 			t->data = itm;
@@ -157,7 +157,7 @@ namespace ds
 				return NULL;
 			}
 
-			BTNode<T> *t = Create(rt->data);
+			BTNode<T> *t = TCreate(rt->data);
 			t->left = Copy(rt->left);
 			t->right = Copy(rt->right);
 			return t;
