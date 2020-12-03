@@ -11,67 +11,72 @@ Binary Trees & Binary Search Trees
 
 namespace ds
 {
-    template <typename T>
-    int Size(sn::BTNode<T>* root)
-    {
-        if(root == NULL)
-        {
-            return 0;
-        }
-        else 
-        {
-            return 1 + Size(root->left) + Size(root->right);
-        }
-    }
+	template <typename T>
+    	int Size(sn::BTNode<T>* root)
+    	{
+        	if(root == NULL)
+        	{
+            		return 0;
+        	}
+        	else 
+        	{
+            		return 1 + Size(root->left) + Size(root->right);
+        	}
+    	}
 
-    template <typename T>
-    void BTInsert(sn::BTNode<T>*& root,const T& value)
-    {
-        if(root == NULL)
-        {
-            root = sn::TCreate(value);
-            return;
-        }
+	sn::Stack<int> Ancestors(int p)
+	{
+		sn::Stack<int> a;
 
-        int sz = Size(root);
-        int p = sz;
-        sn::Stack<int> anc;
-        
-        while(p > 0)
-        {
-            p = (p - 1) / 2;
-            anc.Push(p);
-        } 
+		while(p > 0)
+		{
+			p = (p - 1) / 2; //parent index
+			a.Push(p);
+		}
+		return a;
+	}
 
-        sn::BTNode<T>* t = root;
-        int pp = 0;
-        anc.Pop();
+	template <typename T>
+	void BTInsert(sn::BTNode<T>*& root,const T& value)
+    	{
+        	if(root == NULL)
+        	{
+            		root = sn::TCreate(value);
+            		return;
+        	}
 
-        while(!anc.IsEmpty())
-        {
-            p = anc.Top();
-            anc.Pop();
+        	int sz = Size(root);
+        	int p = sz;
+        	sn::Stack<int> ac = Ancestors(p);
+        	sn::BTNode<T>* t = root;
+        	int pp = 0;
+        	ac.Pop();
 
-            if(2 * pp + 1 == p)
-            {
-                t = t->left;
-            }
-            else 
-            {
-                t = t->right;
-            }
-            pp = p;
-        }
+        	while(!ac.IsEmpty())
+        	{
+            		p = ac.Top();
+            		ac.Pop();
 
-        if(t->left == NULL)
-        {
-            t->left = ds::sn::TCreate(value);
-        }
-        else
-        {
-            t->right = ds::sn::TCreate(value);
-        }
-    }
+            		if(2 * pp + 1 == p)
+            		{
+                		t = t->left;
+            		}
+            		else 
+            		{
+                		t = t->right;
+            		}
+            		pp = p;
+        	}
+
+        	if(t->left == NULL)
+        	{
+            		t->left = ds::sn::TCreate(value);
+        	}
+        	else
+        	{
+            		t->right = ds::sn::TCreate(value);
+        	}
+	}
 
     template <typename T>
     void BSTInsert(sn::BTNode<T>*& root,const T& value)
